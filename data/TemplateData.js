@@ -3,25 +3,25 @@ export const TemplateData = [
     {
         id: '1',
         name: 'Template 1',
-        img: '',
-        route: 'template1'
+        img: '/images/template/template1.jpg',
+        route: '/template-1/home'
     },
     {
         id: '2',
         name: 'Template 2',
-        img: '',
-        route: 'template2'
+        img: '/images/template/template1.jpg',
+        route: '/template-2/home'
     },
     {
         id: '3',
         name: 'Template 3',
-        img: '',
-        route: 'template3'
+        img: '/images/template/template1.jpg',
+        route: '/template-1/home'
     },
     {
         id: '4',
         name: 'Template 4',
-        img: '',
-        route: 'template4'
+        img: '/images/template/template1.jpg',
+        route: '/template-2/home'
     }
 ];

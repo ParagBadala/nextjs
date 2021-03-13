@@ -3,6 +3,7 @@ import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Box, Container } from "@material-ui/core";
 
+import { useRouter } from 'next/router'
 import { TemplateData } from "../../data/TemplateData";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Templates() {
   const classes = useStyles();
-  console.log(TemplateData)
+  const router = useRouter();
+
+  const navigateToTemplate = (route) => {
+    router.push(route);
+  };
 
   return (
     <>
@@ -32,15 +37,16 @@ export default function Templates() {
                 className={classes.hover}
                 boxShadow={3}
                 style={{ width: "15rem", height: "20rem" }}
+                onClick={() => {navigateToTemplate(item.route)}}
               >
                 <Image
-                  src="/images/template/template1.jpg"
+                  src={item.img}
                   alt="template1"
                   width={240}
                   height={320}
                 />
               </Box>
-              <h3 className={classes.cvName}>Template 1</h3>
+              <h3 className={classes.cvName}>{item.name}</h3>
             </Grid>
           ))}
         </Grid>

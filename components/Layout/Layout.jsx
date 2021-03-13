@@ -12,16 +12,17 @@ import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import {ExpandMore,ExitToApp }from '@material-ui/icons';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { NavigationItemList } from "../../data/NavigationItemsList";
-import { FormControl, MenuItem, Select } from "@material-ui/core";
+import { FormControl, MenuItem,Button, Divider ,Menu,Select,Avatar } from "@material-ui/core";
+import { blue } from '@material-ui/core/colors';
 
 const drawerWidth = 240;
 
@@ -111,6 +112,9 @@ const useStyles = makeStyles((theme) =>
     },
     fieldSection: {
       display: 'flex'
+    },
+    profileIcon:{
+      marginLeft: 0,
     }
   })
 );
@@ -119,6 +123,22 @@ export default function Layout({ children }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openLogout = Boolean(anchorEl);
+
+
+  const [headerFont,setHeaderFont]=React.useState(0);
+  const [bodyFont,setBodyFont]=React.useState(0);
+  const [fontSize,setFontSize]=React.useState(0);
+      const SelectFont=(e)=>{
+        setHeaderFont(e.target.value);}
+
+      const SelectBody=(e)=>{
+        setBodyFont(e.target.value);}
+
+      const SelectSize=(e)=>{
+        setFontSize(e.targetvalue);}
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -126,6 +146,12 @@ export default function Layout({ children }) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -153,6 +179,39 @@ export default function Layout({ children }) {
             <Typography variant="h6" noWrap>
               Mini variant drawer
             </Typography>
+            <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <Avatar alt="profile picture" src="https://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit.jpg" />
+                <ExpandMore style={{ color: blue[500] }} />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={openLogout}
+                onClose={handleClose}
+              >
+              <ListItem button>
+              <ListItemIcon>
+                <ExitToApp  onClick={handleClose} style={{ color: blue[500] }}/>
+              </ListItemIcon>
+              <ListItemText  onClick={handleClose} primary="Logout" />
+              </ListItem>
+              </Menu>
+
           </Toolbar>
         </AppBar>
         <Drawer
@@ -192,69 +251,75 @@ export default function Layout({ children }) {
           <div className={classes.toolbar} />
           <div className={classes.navbar}>
             <div className={classes.fieldSection}>
-              <p>Header Font</p>
+             
+              <p>Header Font</p> &nbsp; &nbsp;
               <FormControl className={classes.margin}>
-                <Select
-                  labelId="demo-customized-select-label"
-                  id="demo-customized-select"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
+               <Button variant="outlined" >
+               <Select
+                            disableUnderline={true}
+                            value={headerFont}
+                            onChange={SelectFont}
+                            >
+                            <MenuItem value={headerFont}>Select Header Font</MenuItem>
+                            <MenuItem value={1}>GaramondFira</MenuItem>
+                            <MenuItem value={2}>Arvo</MenuItem>
+                            <MenuItem value={3}>AssistantEB</MenuItem>
+                            <MenuItem value={4}>SerifOpen</MenuItem>
+                            <MenuItem value={5}>SansOswaldPlayfair</MenuItem>
+                            <MenuItem value={6}>SansPT</MenuItem>
+                            <MenuItem value={7}>SerifRalewayRasaRoboto</MenuItem>
+                            <MenuItem value={8}>CondensedRoboto</MenuItem>
+                            <MenuItem value={9}>MontserratNoto</MenuItem>
+                            <MenuItem value={10}>Serif</MenuItem>
+                            </Select>
+                </Button> 
               </FormControl>
             </div>
             <div className={classes.fieldSection}>
-              <p>Header Font</p>
               <FormControl className={classes.margin}>
-                <Select
-                  labelId="demo-customized-select-label"
-                  id="demo-customized-select"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
+              <Button variant="outlined" >
+              <Select
+                            disableUnderline={true}
+                            value={bodyFont}
+                            onChange={SelectBody}
+                            >
+                            <MenuItem value={bodyFont}>Select Body Font</MenuItem>
+                            <MenuItem value={1}>GaramondFira</MenuItem>
+                            <MenuItem value={2}>Arvo</MenuItem>
+                            <MenuItem value={3}>AssistantEB</MenuItem>
+                            <MenuItem value={4}>SerifOpen</MenuItem>
+                            <MenuItem value={5}>SansOswaldPlayfair</MenuItem>
+                            <MenuItem value={6}>SansPT</MenuItem>
+                            <MenuItem value={7}>SerifRalewayRasaRoboto</MenuItem>
+                            <MenuItem value={8}>CondensedRoboto</MenuItem>
+                            <MenuItem value={9}>MontserratNoto</MenuItem>
+                            <MenuItem value={10}>Serif</MenuItem>
+                            </Select>
+                </Button>
               </FormControl>
             </div>
-            <div className={classes.fieldSection}>
-              <p>Header Font</p>
+            <div className={classes.fieldSection} >
               <FormControl className={classes.margin}>
-                <Select
-                  labelId="demo-customized-select-label"
-                  id="demo-customized-select"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
+              <Button variant="outlined" >
+              <Select
+                            disableUnderline={true}
+                            value={fontSize}
+                            onChange={SelectSize}
+                            >
+                            <MenuItem value={fontSize}>Select Font Size</MenuItem>
+                            <MenuItem value={1}>2</MenuItem>
+                            <MenuItem value={2}>4</MenuItem>
+                            <MenuItem value={3}>5</MenuItem>
+                            <MenuItem value={4}>6</MenuItem>
+                            <MenuItem value={5}>8</MenuItem>
+                            <MenuItem value={6}>12</MenuItem>
+                            <MenuItem value={7}>14</MenuItem>
+                            <MenuItem value={8}>16</MenuItem>
+                            </Select>
+                </Button>
               </FormControl>
             </div>
-            <div className={classes.fieldSection}>
-              <p>Header Font</p>
-              <FormControl className={classes.margin}>
-                <Select
-                  labelId="demo-customized-select-label"
-                  id="demo-customized-select"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
+           
           </div>
           <div>{children}</div>
         </main>

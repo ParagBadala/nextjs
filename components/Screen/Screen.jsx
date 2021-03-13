@@ -21,16 +21,18 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, carbs, protein) {
-  return { name, carbs, protein };
+function createData(name, author, date) {
+  return { name, author, date };
 }
 
 const rows = [
-  createData('Frozen yoghurt',  24, 4.0),
-  createData('Ice cream sandwich', 37, 4.3),
-  createData('Eclair', 262, 6.0),
-  createData('Cupcake', 305,  4.3),
-  createData('Gingerbread',  49, 3.9),
+  createData('About Us', "ClaytonBrown", "12/03/2021"),
+  createData('Blog',  "ClaytonBrown", "20/04/2020"),
+  createData('Celebrate Recovery',  "ClaytonBrown", "15/11/2022"),
+  createData('Christmas Eve Candle Light Services',  "ClaytonBrown",  "22/11/2019"),
+  createData('Church Location',   "ClaytonBrown", "01/10/2018"),
+  createData('Connect',  "ClaytonBrown", "25/12/2021"),
+
 ];
 
 const useStyles = makeStyles({
@@ -48,8 +50,8 @@ export default function Screen() {
       <TableHead className={classes.head}>
           <TableRow>
             <StyledTableCell>Title</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Author</StyledTableCell>
+            <StyledTableCell align="right">Date</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,8 +60,8 @@ export default function Screen() {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-             <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+             <StyledTableCell align="right">{row.author}</StyledTableCell>
+              <StyledTableCell align="right">{row.date}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

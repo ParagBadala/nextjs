@@ -16,7 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import {ExpandMore,ExitToApp }from '@material-ui/icons';
+import {ExpandMore,ExitToApp, AccountCircle }from '@material-ui/icons';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -109,12 +109,32 @@ const useStyles = makeStyles((theme) =>
       justifyContent: "space-around",
       height: "60px",
       padding: "0px 15px",
+      marginBottom: '35px',
+      paddingBottom: '10px',
     },
     fieldSection: {
       display: 'flex'
     },
     profileIcon:{
       marginLeft: 0,
+    },
+    navdrop: {
+      border: '1px solid rgb(204, 204, 204)',
+      borderRadius: '4px',
+      boxShadow: 'rgb(62 148 228 / 15%) 0px 2px 4px 0px',
+      color: 'rgb(2, 13, 22)',
+      cursor: 'pointer'
+    },
+    colorSection: {
+      display:'flex',
+      alignItems: 'center'
+    },
+    colorField: {
+      borderRadius: '50%',
+      marginRight: '5px',
+      width: '30px',
+      height: '30px',
+      border: '1px solid transparent'
     }
   })
 );
@@ -176,7 +196,7 @@ export default function Layout({ children }) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
+            <Typography variant="h6" noWrap style={{flexGrow: 1}}>
               Mini variant drawer
             </Typography>
             <IconButton
@@ -186,7 +206,8 @@ export default function Layout({ children }) {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <Avatar alt="profile picture" src="https://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit.jpg" />
+                {/* <Avatar alt="profile picture" src="https://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit.jpg" /> */}
+                <AccountCircle style={{color: blue[500], fontSize: '35px'}}/>
                 <ExpandMore style={{ color: blue[500] }} />
               </IconButton>
               <Menu
@@ -251,13 +272,12 @@ export default function Layout({ children }) {
           <div className={classes.toolbar} />
           <div className={classes.navbar}>
             <div className={classes.fieldSection}>
-             
               <p>Header Font</p> &nbsp; &nbsp;
               <FormControl className={classes.margin}>
-               <Button variant="outlined" >
+               <Button variant="outlined" className={classes.navdrop} >
                <Select
                             disableUnderline={true}
-                            value={headerFont}
+                            value={1}
                             onChange={SelectFont}
                             >
                             <MenuItem value={headerFont}>Select Header Font</MenuItem>
@@ -276,11 +296,12 @@ export default function Layout({ children }) {
               </FormControl>
             </div>
             <div className={classes.fieldSection}>
+              <p>Body Font</p> &nbsp; &nbsp;
               <FormControl className={classes.margin}>
-              <Button variant="outlined" >
+              <Button variant="outlined" className={classes.navdrop}>
               <Select
                             disableUnderline={true}
-                            value={bodyFont}
+                            value={1}
                             onChange={SelectBody}
                             >
                             <MenuItem value={bodyFont}>Select Body Font</MenuItem>
@@ -299,11 +320,12 @@ export default function Layout({ children }) {
               </FormControl>
             </div>
             <div className={classes.fieldSection} >
+              <p>Font Size</p> &nbsp; &nbsp;
               <FormControl className={classes.margin}>
-              <Button variant="outlined" >
+              <Button variant="outlined" className={classes.navdrop}>
               <Select
                             disableUnderline={true}
-                            value={fontSize}
+                            value={7}
                             onChange={SelectSize}
                             >
                             <MenuItem value={fontSize}>Select Font Size</MenuItem>
@@ -319,7 +341,20 @@ export default function Layout({ children }) {
                 </Button>
               </FormControl>
             </div>
-           
+            <Divider orientation="vertical" flexItem />
+            <div className={classes.fieldSection} >
+              <p>Colors</p> &nbsp; &nbsp;
+              <div className={classes.colorSection}>
+                <div className={classes.colorField} style={{backgroundColor: 'rgb(248, 210, 50)'}}></div>
+                <div className={classes.colorField} style={{backgroundColor: 'black'}}></div>
+                <div className={classes.colorField} style={{backgroundColor: 'black'}}></div>
+                <div className={classes.colorField} style={{backgroundColor: 'white'}}></div>
+              </div>
+            </div>
+            <Divider orientation="vertical" flexItem />
+            <Button variant="outlined" color="primary">
+              Reset Style
+            </Button>
           </div>
           <div>{children}</div>
         </main>

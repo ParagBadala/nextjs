@@ -196,8 +196,8 @@ export default function Layout({ children }) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap style={{flexGrow: 1}}>
-              Mini variant drawer
+            <Typography variant="h6" noWrap style={{color: blue[500],flexGrow: 1}}>
+              CMD Resumes
             </Typography>
             <IconButton
                 aria-label="account of current user"
@@ -251,9 +251,9 @@ export default function Layout({ children }) {
           <div className={classes.toolbar}>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
+                <ChevronRightIcon style={{ color: blue[500] }} />
               ) : (
-                <ChevronLeftIcon />
+                <ChevronLeftIcon style={{ color: blue[500] }}  />
               )}
             </IconButton>
           </div>

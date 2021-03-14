@@ -6,30 +6,30 @@ export const NavigationItemList = [
         id: '1',
         icon: <BrushOutlined style={{ color: blue[500] }}/>,
         name: 'Appearance',
-        route: 'appearance'
+        route: '/template'
     },
     {
         id: '2',
         icon: <DashboardOutlined style={{ color: blue[500] }} />,
         name: 'Page Layout',
-        route: 'page-layout'
+        route: '/template'
     },
     {
         id: '3',
         icon: <DesktopWindowsOutlined style={{ color: blue[500] }}/>,
         name: 'Change Template',
-        route: 'change-template'
+        route: '/template'
     },
     {
         id: '4',
         icon: <FilterNone style={{ color: blue[500] }}/>,
         name: 'Screen',
-        route: 'Screen'
+        route: '/screen'
     },
     {
         id: '5',
         icon: <SettingsOutlined style={{ color: blue[500] }}/>,
         name: 'Settings',
-        route: 'settings'
+        route: '/template'
     }
 ];

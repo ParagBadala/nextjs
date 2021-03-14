@@ -32,7 +32,7 @@ export default function Templates() {
       <Container maxWidth="md">
         <Grid container spacing={6}>
           {TemplateData.map((item, index) => (
-            <Grid item sm xs={12}>
+            <Grid item sm xs={12} key={item.id}>
               <Box
                 className={classes.hover}
                 boxShadow={3}

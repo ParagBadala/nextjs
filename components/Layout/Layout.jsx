@@ -23,6 +23,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { NavigationItemList } from "../../data/NavigationItemsList";
 import { FormControl, MenuItem,Button, Divider ,Menu,Select,Avatar } from "@material-ui/core";
 import { blue } from '@material-ui/core/colors';
+import { useRouter } from 'next/router'
 
 const drawerWidth = 240;
 
@@ -113,7 +114,8 @@ const useStyles = makeStyles((theme) =>
       paddingBottom: '10px',
     },
     fieldSection: {
-      display: 'flex'
+      display: 'flex',
+      alignItems: 'center'
     },
     profileIcon:{
       marginLeft: 0,
@@ -135,12 +137,16 @@ const useStyles = makeStyles((theme) =>
       width: '30px',
       height: '30px',
       border: '1px solid transparent'
+    },
+    navText: {
+      marginBottom: '0'
     }
   })
 );
 
 export default function Layout({ children }) {
   const classes = useStyles();
+  const router = useRouter();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -174,12 +180,16 @@ export default function Layout({ children }) {
     setAnchorEl(null);
   };
 
+  const navigateToPage = (data) => {
+    router.push(data.route);
+  }
+
   return (
     <>
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-          position="Fixed"
+          position="fixed"
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
           })}
@@ -197,7 +207,7 @@ export default function Layout({ children }) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap style={{color: blue[500],flexGrow: 1}}>
-              CMD Resumes
+              Edit Content
             </Typography>
             <IconButton
                 aria-label="account of current user"
@@ -260,7 +270,7 @@ export default function Layout({ children }) {
           <Divider />
           <List>
             {NavigationItemList.map((item, index) => (
-              <ListItem button key={item.id}>
+              <ListItem button key={item.id} onClick={() => {navigateToPage(item)}}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.name} />
               </ListItem>
@@ -272,7 +282,7 @@ export default function Layout({ children }) {
           <div className={classes.toolbar} />
           <div className={classes.navbar}>
             <div className={classes.fieldSection}>
-              <p>Header Font</p> &nbsp; &nbsp;
+              <p className={classes.navText}>Header Font</p> &nbsp; &nbsp;
               <FormControl className={classes.margin}>
                <Button variant="outlined" className={classes.navdrop} >
                <Select
@@ -296,7 +306,7 @@ export default function Layout({ children }) {
               </FormControl>
             </div>
             <div className={classes.fieldSection}>
-              <p>Body Font</p> &nbsp; &nbsp;
+              <p className={classes.navText}>Body Font</p> &nbsp; &nbsp;
               <FormControl className={classes.margin}>
               <Button variant="outlined" className={classes.navdrop}>
               <Select
@@ -320,7 +330,7 @@ export default function Layout({ children }) {
               </FormControl>
             </div>
             <div className={classes.fieldSection} >
-              <p>Font Size</p> &nbsp; &nbsp;
+              <p className={classes.navText}>Font Size</p> &nbsp; &nbsp;
               <FormControl className={classes.margin}>
               <Button variant="outlined" className={classes.navdrop}>
               <Select
@@ -343,7 +353,7 @@ export default function Layout({ children }) {
             </div>
             <Divider orientation="vertical" flexItem />
             <div className={classes.fieldSection} >
-              <p>Colors</p> &nbsp; &nbsp;
+              <p className={classes.navText}>Colors</p> &nbsp; &nbsp;
               <div className={classes.colorSection}>
                 <div className={classes.colorField} style={{backgroundColor: 'rgb(248, 210, 50)'}}></div>
                 <div className={classes.colorField} style={{backgroundColor: 'black'}}></div>
